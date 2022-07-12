@@ -70,6 +70,14 @@ class CreateTfgmsTables extends Migration
             $table->foreign('workout_id')->references('workout_id')->on('workouts')->onUpdate('cascade')->onDelete('set null');
             $table->string('workout_schedule');
         });
+
+        Schema::create('products', function (Blueprint $table) {
+            $table->increments('product_id');
+            $table->string('product_image_source')->nullable();
+            $table->string('product_name');
+            $table->string('product_description');
+            $table->float('price');
+        });
     }
 
     /**
@@ -85,6 +93,7 @@ class CreateTfgmsTables extends Migration
         Schema::dropIfExists('workouts');
         Schema::dropIfExists('attendance');
         Schema::dropIfExists('workout_management');
+        Schema::dropIfExists('products');
 
     }
 }
